@@ -31,6 +31,11 @@ npm install
 npm run dev
 ```
 
+
+
+这是新加的
+
+
 This will automatically open http://localhost:9528
 
 ## Build
