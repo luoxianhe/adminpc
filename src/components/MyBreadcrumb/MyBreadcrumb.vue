@@ -1,4 +1,5 @@
 <template>
+<div class="MyBreadcrumb">
   <el-breadcrumb class="app-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item,index) in levelList" :key="item.path">
@@ -7,6 +8,7 @@
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
+  </div>
 </template>
 
 <script>
@@ -19,7 +21,11 @@ export default {
     }
   },
   watch: {
-    $route() {
+    $route(route) {
+      // if you go to the redirect page, do not update the breadcrumbs
+      if (route.path.startsWith('/redirect/')) {
+        return
+      }
       this.getBreadcrumb()
     }
   },
@@ -33,7 +39,7 @@ export default {
       const first = matched[0]
 
       if (!this.isDashboard(first)) {
-        matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }}].concat(matched)
+       // matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }}].concat(matched)
       }
 
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
@@ -64,6 +70,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.MyBreadcrumb{
+  margin:20px 0 0 20px;
+}
 .app-breadcrumb.el-breadcrumb {
   display: inline-block;
   font-size: 14px;

@@ -6,7 +6,10 @@
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
       </div>
-      <app-main />
+      <div class="con">
+         <app-main />
+         </div>
+     
     </div>
   </div>
 </template>
@@ -19,6 +22,7 @@ export default {
   name: 'Layout',
   components: {
     Navbar,
+  
     Sidebar,
     AppMain
   },

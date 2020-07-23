@@ -1,20 +1,30 @@
 <template>
   <section class="app-main">
     <transition name="fade-transform" mode="out-in">
-      <router-view :key="key" />
+      <!-- 顶部导航 -->
+      <MyBreadcrumb></MyBreadcrumb>
+    </transition>
+    <transition name="fade-transform" mode="out-in">
+      <div class="toalLeft">
+          <router-view :key="key" />
+      </div>
+     
     </transition>
   </section>
 </template>
-
 <script>
+import MyBreadcrumb from "@/components/MyBreadcrumb/MyBreadcrumb";
 export default {
-  name: 'AppMain',
+  name: "AppMain",
+  components: {
+    MyBreadcrumb
+  },
   computed: {
     key() {
-      return this.$route.path
+      return this.$route.path;
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -23,9 +33,13 @@ export default {
   min-height: calc(100vh - 50px);
   width: 100%;
   position: relative;
+  top: 50px;
   overflow: hidden;
 }
-.fixed-header+.app-main {
+.toalLeft{
+  margin-left: 20px;
+}
+.fixed-header + .app-main {
   padding-top: 50px;
 }
 </style>

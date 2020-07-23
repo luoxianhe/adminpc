@@ -2,7 +2,9 @@ import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
-
+// 相当于axios的封装
+//便于统一处理 POST，GET 等请求参数，请求头，以及错误提示信息等
+//它封装了全局 request拦截器、response拦截器、统一的错误处理、统一做了超时处理、baseURL设置等
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url

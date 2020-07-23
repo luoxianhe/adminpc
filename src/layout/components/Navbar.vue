@@ -1,50 +1,47 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-
-    <breadcrumb class="breadcrumb-container" />
-
+  <div class="title"><svg-icon icon-class="logo" /><span>后台管理系统</span> </div>
+   
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
+          <span class="Username">{{name}}</span>
           <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/">
             <el-dropdown-item>
-              Home
+              主页
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
-            <el-dropdown-item>Github</el-dropdown-item>
-          </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
           <el-dropdown-item divided @click.native="logout">
-            <span style="display:block;">Log Out</span>
+            <span style="display:block;">退出</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
+    </div>
+    <div>
+      
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
+
 import Hamburger from '@/components/Hamburger'
 
 export default {
   components: {
-    Breadcrumb,
+
     Hamburger
   },
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar'
+      'avatar',
+       'name'
     ])
   },
   methods: {
@@ -60,10 +57,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.Username{
+  font-size: 20px;
+  line-height: 50px;
+  float: left;
+  margin-right: 10px;
+}
+.title{
+ line-height: 50px;
+ display: inline;
+ float: left;
+  svg{
+    width:2em;
+    margin-top:10px;
+    height: 2em;
+    margin-right: 1em;
+    float: left;
+  }
+ 
+
+}
+.el-dropdown-menu{
+  margin-top:0!important;
+}
 .navbar {
   height: 50px;
   overflow: hidden;
-  position: relative;
+  position: fixed;
+  width: 100%;
+  z-index: 999999;
+  padding-left: 16px;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
 
