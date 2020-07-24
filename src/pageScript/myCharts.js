@@ -1,4 +1,6 @@
 import echarts from 'echarts'
+
+
 const install = function(Vue) {
     //Object.defineProperties(obj,props)
     //参数 obj 在其定义上活修改属性的对象
